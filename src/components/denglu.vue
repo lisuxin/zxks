@@ -1,33 +1,18 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+// 获取 router 实例
+const router = useRouter();
 
 // 定义响应式数据
 const username = ref('');
 const password = ref('');
 
-// 获取路由实例
-const router = useRouter();
-
-// 定义处理登录的方法
-const handleLogin = async () => {
-  try {
-    // 模拟API请求
-    // 在实际应用中，你应该使用 axios 或 fetch 发送请求到后端 API
-    // 例如：
-    // const response = await axios.post('/api/login', { username: username.value, password: password.value });
-    // if (response.data.success) {
-    //   // 登录成功后的处理
-    // }
-
-    // 模拟登录成功
-    // 登录成功后跳转到 "longgo" 页面
-    router.push({ name: 'Gonggo' });
-  } catch (err) {
-    // 处理登录失败的情况
-    router.push({ name: 'Gonggo' });
-  }
-};
+// 处理登录逻辑
+function handleLogin() {
+  // 模拟登录成功后跳转到 /gonggo
+  router.push('/gonggo');
+}
 </script>
 
 <template>
