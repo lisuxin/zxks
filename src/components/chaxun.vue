@@ -1,35 +1,66 @@
 <script setup>
+import { ref, onMounted } from "vue";
+import api from "../api";
+
+const tableData = ref([]);
+
+onMounted(() => {
+  fetchData();
+});
+
+const fetchData = async () => {
+  let data = {
+    id: "",
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    email: "",
+    phoneNumber: "",
+    city: "",
+    postalCode: "",
+    country: "",
+    createdAt: "",
+    updatedAt: "",
+    encryptedPassword: "",
+    ssnHash: "",
+    emergencyContactName: "",
+    emergencyContactPhone: "",
+    address: "",
+    profilePicture: "",
+  };
+  try {
+    const response = await api.getselect();
+    tableData.value = response.data;
+    console.log(tableData.value);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 </script>
 
 <template>
   <div>
-    <h2>Query Data</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Example data rows -->
-        <tr>
-          <td>1</td>
-          <td>John Doe</td>
-          <td>john@example.com</td>
-          <td><a href="update-info.html?id=1">Update</a></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jane Smith</td>
-          <td>jane@example.com</td>
-          <td><a href="update-info.html?id=2">Update</a></td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="id" label="id" width="180" />
+      <el-table-column prop="firstName" label="firstName" width="180" />
+      <el-table-column prop="lastName" label="lastName" width="180" />
+      <el-table-column prop="dateOfBirth" label="dateOfBirth" width="180" />
+      <el-table-column prop="gender" label="gender" width="180" />
+      <el-table-column prop="email" label="email" width="180" />
+      <el-table-column prop="phoneNumber" label="phoneNumber" width="180" />
+      <el-table-column prop="city" label="city" width="180" />
+      <el-table-column prop="postalCode" label="postalCode" width="180" />
+      <el-table-column prop="country" label="country" width="180" />
+      <el-table-column prop="createdAt" label="createdAt" width="180" />
+      <el-table-column prop="updatedAt" label="updatedAt" width="180" />
+      <el-table-column prop="encryptedPassword" label="encryptedPassword" width="180" />
+      <el-table-column prop="ssnHash" label="ssnHash" width="180" />
+      <el-table-column prop="emergencyContactName" label="emergencyContactName" width="180" />
+      <el-table-column prop="emergencyContactPhone" label="emergencyContactPhone" width="180" />
+      <el-table-column prop="address" label="address" width="180" />
+      <el-table-column prop="profilePicture" label="profilePicture" />
+    </el-table>
   </div>
 </template>
 
