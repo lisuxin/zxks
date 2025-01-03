@@ -1,17 +1,26 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-// 获取 router 实例
+import api from "../api";
+
 const router = useRouter();
 
-// 定义响应式数据
 const username = ref('');
 const password = ref('');
 
-// 处理登录逻辑
-function handleLogin() {
-  // 模拟登录成功后跳转到 /gonggo
-  router.push('/gonggo');
+const handleLogin = async () => {
+  try {
+    const response = await api.getddengluid({ username: username.value, password: password.value });
+    if (response.data === 2) {
+      router.push('/gonggo');
+    }else if(response.data === 1){
+      alert('密码错误');
+    }else if(response.data === 0){
+      alert('用户名错误');
+    }
+  } catch (error) {
+    alert('登录过程中发生错误，请稍后再试');
+  }
 }
 </script>
 

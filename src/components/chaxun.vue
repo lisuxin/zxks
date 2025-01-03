@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import api from "../api";
 
 const tableData = ref([]);
@@ -29,6 +29,7 @@ const fetchData = async () => {
     address: "",
     profilePicture: "",
   };
+  
   try {
     const response = await api.getselect();
     tableData.value = response.data;

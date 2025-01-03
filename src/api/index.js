@@ -11,18 +11,21 @@ const instance = axios.create({
 const api = {
   getselect() {
     return instance.get(base.select);
-  }
-  get() {
-    return instance.get(base.select);
-  }
-  getselect() {
-    return instance.get(base.select);
-  }
-getselect() {
-    return instance.get(base.select);
-  }
-getselect() {
-    return instance.get(base.select);
+  },
+  getinsert() {
+    return instance.post(base.insertid);
+  },
+  getupdate() {
+    return instance.put(base.updateid);
+  },
+getselectid() {
+    return instance.get(base.selectid);
+  },
+getdelectid() {
+    return instance.delect(base.delectid);
+  },
+  getddengluid() {
+    return instance.post(base.dengluid);
   }
 }
 
