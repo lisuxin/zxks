@@ -1,15 +1,19 @@
 <script>
-export default {};
+
 </script>
 
 <template>
   <div class="common-layout">
     <el-container>
       <el-aside width="200px">
-        <el-menu :default-active="activeIndex" router>
+        <el-menu default-active="activeIndex" router>
           <el-menu-item index="/chaxun" :route="{ name: 'chaxun' }">
             <i class="el-icon-search"></i>
             <span>查询</span>
+          </el-menu-item>
+          <el-menu-item index="/xinzen" :route="{ name: 'xinzen' }">
+            <i class="el-icon-edit"></i>
+            <span>新增</span>
           </el-menu-item>
           <el-menu-item index="/gengxi" :route="{ name: 'gengxi' }">
             <i class="el-icon-edit"></i>

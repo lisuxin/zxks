@@ -9,26 +9,6 @@ onMounted(() => {
 });
 
 const fetchData = async () => {
-  let data = {
-    id: "",
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    gender: "",
-    email: "",
-    phoneNumber: "",
-    city: "",
-    postalCode: "",
-    country: "",
-    createdAt: "",
-    updatedAt: "",
-    encryptedPassword: "",
-    ssnHash: "",
-    emergencyContactName: "",
-    emergencyContactPhone: "",
-    address: "",
-    profilePicture: "",
-  };
   
   try {
     const response = await api.getselect();

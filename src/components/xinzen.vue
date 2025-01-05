@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { ref,computed  } from "vue";
-import api from "../api/index.js";
+import { ref } from "vue";
 
-const id = ref("");
 const firstName = ref("");
 const lastName = ref("");
 const dateOfBirth = ref("");
@@ -20,52 +18,12 @@ const emergencyContactName = ref("");
 const emergencyContactPhone = ref("");
 const address = ref("");
 
-
-
-const xiugai = async () => {
-  try {
-    const data = {
-      address: address.value,
-      city: city.value,
-      country: country.value,
-      createdAt: createdAt.value,
-      dateOfBirth: new Date(dateOfBirth.value).toISOString(),
-      //将时间转化为文本值
-      email: email.value,
-      emergencyContactName: emergencyContactName.value,
-      emergencyContactPhone: emergencyContactPhone.value,
-      encryptedPassword: encryptedPassword.value,
-      firstName: firstName.value,
-      gender: gender.value,
-      id: id.value,
-      lastName: lastName.value,
-      phoneNumber: phoneNumber.value,
-      postalCode: postalCode.value,
-      profilePicture: null,
-      ssnHash: ssnHash.value,
-      updatedAt: updatedAt.value,
-    };
-
-    console.log(data)
-
-    const response = await api.getgengxin(data);
-
-
-
-    alert("成功")
-  } catch {
-    alert("失败")
-  }
-}
-
 </script>
 
 <template>
   <div>
+    <h2>新增记录</h2>
     <el-form label-width="120px">
-      <el-form-item label="id">
-        <el-input v-model="id" placeholder="id" />
-      </el-form-item>
       <el-form-item label="First Name">
         <el-input v-model="firstName" placeholder="Enter first name" />
       </el-form-item>
@@ -109,12 +67,13 @@ const xiugai = async () => {
 
       <el-form-item label="Date of Birth">
         <el-date-picker
-        v-model="dateOfBirth"
-        type="date"
-        placeholder="Pick a day"
-      />
+          v-model="dateOfBirth"
+          type="date"
+          placeholder="Pick a date"
+        />
       </el-form-item>
-      <el-form-item label="Gender 必选项">
+
+      <el-form-item label="Gender">
         <el-select v-model="gender" placeholder="Select gender">
           <el-option label="Male" value="male" />
           <el-option label="Female" value="female" />
@@ -154,7 +113,7 @@ const xiugai = async () => {
         />
       </el-form-item>
       <div class="mb-4">
-        <el-button @click="xiugai" type="success">提交修改</el-button>
+        <el-button type="success">新增记录</el-button>
       </div>
     </el-form>
   </div>

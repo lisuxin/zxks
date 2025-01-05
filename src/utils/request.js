@@ -1,60 +1,48 @@
 import axios from 'axios';
-import querystring from 'querystring'
 
 const errorHandle = (status, info) => {
     switch (status) {
         case 400:
-            console("语义错误")
+            console.error("语义错误");
             break;
         case 401:
-            console("服务器认证失败")
+            console.error("服务器认证失败");
             break;
         case 403:
-            console("服务器拒绝访问")
+            console.error("服务器拒绝访问");
             break;
         case 404:
-            console("地址错误")
+            console.error("地址错误");
             break;
         case 500:
-            console("服务器报出异常")
+            console.error("服务器报出异常");
             break;
         case 502:
-            console("服务器报无响应")
+            console.error("服务器无响应");
             break;
+        default:
+            console.error(`未知错误: ${status}`, info);
     }
-}
-
-
+};
 
 const instance = axios.create({
-    timeout: 5000, //请求超时时间
+    baseURL: 'http://localhost:5173/api',
+    timeout: 5000,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
-//拦截器最常用的
 
-//发送数据之前
 instance.interceptors.request.use(
     config => {
-        if (config.method == "post") {
-            config.data = querystring.stringify(config.data)
+        if (config.method === 'post') {
         }
-        //包含网络请求的所有信息
-        return config
+        // if (config.method === 'put') {
+        // }
+        return config;
     },
     error => {
-        return Promise.reject(error)
-        //异常
+        return Promise.reject(error);
     }
 );
-
-//获取数据之前
-instance.interceptors.response.use(
-    response => {
-        return response.status == 200 ? Promise.resolve(response) : Promise.reject(response)
-    },
-    error => {
-        const { response } = error;
-        errorHandle(response.status, response.info)
-    }
-);
-
 export default instance;

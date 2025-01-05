@@ -5,6 +5,7 @@ import gengxi from '../components/gengxi.vue';
 import gonggo from '../components/gonggo.vue';
 import shancu from '../components/shancu.vue';
 import denglu from '../components/denglu.vue';
+import xinzen from '../components/xinzen.vue';
 
 const routes=[
     {
@@ -30,6 +31,11 @@ const routes=[
                 name:"shancu",
                 path:'shancu',
                 component:shancu
+            },
+            {
+                name:"xinzen",
+                path:'xinzen',
+                component:xinzen
             }
         ]
     }]
