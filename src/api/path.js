@@ -5,6 +5,10 @@ const base ={
     dengluid:"/zxks/denglu",
     //更新
     gengxinid:"/zxks/update",
+    //新增
+    insertid:"/zxks/insert",
+    //删除
+    shancuid:"/zxks/delect/",
 }
 
 

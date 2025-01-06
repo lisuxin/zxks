@@ -1,5 +1,5 @@
+import instance from "../utils/request";
 import base from "./path";
-import instance from "../utils/request"
 
 const api = {
   getselect() {
@@ -10,6 +10,12 @@ const api = {
   },
   getgengxin(data){
     return instance.put(base.gengxinid,data)
+  },
+  getinsert(data){
+    return instance.post(base.insertid,data)
+  },
+  getsancuid(id){
+    return instance.delete(base.shancuid+id)
   }
 }
 

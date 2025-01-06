@@ -26,7 +26,7 @@ const errorHandle = (status, info) => {
 };
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5173/api',
+    baseURL: 'http://192.168.31.97:81/api',
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json'

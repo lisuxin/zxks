@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import api from "../api/index.js";
 
 const firstName = ref("");
 const lastName = ref("");
@@ -18,11 +19,47 @@ const emergencyContactName = ref("");
 const emergencyContactPhone = ref("");
 const address = ref("");
 
+
+
+const xinzen = async () => {
+  try {
+    const data = {
+      address: address.value,
+      city: city.value,
+      country: country.value,
+      createdAt: createdAt.value,
+      dateOfBirth: new Date(dateOfBirth.value).toISOString(),
+      //将时间转化为文本值
+      email: email.value,
+      emergencyContactName: emergencyContactName.value,
+      emergencyContactPhone: emergencyContactPhone.value,
+      encryptedPassword: encryptedPassword.value,
+      firstName: firstName.value,
+      gender: gender.value,
+      lastName: lastName.value,
+      phoneNumber: phoneNumber.value,
+      postalCode: postalCode.value,
+      profilePicture: null,
+      ssnHash: ssnHash.value,
+      updatedAt: updatedAt.value,
+    };
+
+    console.log(data)
+
+    const response = await api.getinsert(data);
+
+
+
+    alert("成功")
+  } catch {
+    alert("失败")
+  }
+}
+
 </script>
 
 <template>
   <div>
-    <h2>新增记录</h2>
     <el-form label-width="120px">
       <el-form-item label="First Name">
         <el-input v-model="firstName" placeholder="Enter first name" />
@@ -67,13 +104,12 @@ const address = ref("");
 
       <el-form-item label="Date of Birth">
         <el-date-picker
-          v-model="dateOfBirth"
-          type="date"
-          placeholder="Pick a date"
-        />
+        v-model="dateOfBirth"
+        type="date"
+        placeholder="Pick a day"
+      />
       </el-form-item>
-
-      <el-form-item label="Gender">
+      <el-form-item label="Gender 必选项">
         <el-select v-model="gender" placeholder="Select gender">
           <el-option label="Male" value="male" />
           <el-option label="Female" value="female" />
@@ -113,7 +149,7 @@ const address = ref("");
         />
       </el-form-item>
       <div class="mb-4">
-        <el-button type="success">新增记录</el-button>
+        <el-button @click="xinzen" type="success">新增记录</el-button>
       </div>
     </el-form>
   </div>
